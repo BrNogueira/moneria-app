@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moneria Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="https://content.moneria.com.br/tenants/moneria.com.br/favicon.ico">
+    <!-- Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- CSS custom -->
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+
+<body class="bg-white text-dark">
+    <div class="d-flex min-vh-100">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="bg-monBg p-4 d-flex flex-column">
+            <!-- top logo + collapse -->
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                    <img src="src/img/logo-moneria.svg" alt="Moneria Logo" class="logo-img">
+                </div>
+                <button id="btnCollapse"
+                    class="btn btn-light btn-sm rounded-circle shadow-soft d-flex align-items-center justify-content-center"
+                    title="Recolher menu">
+                    <i class="fa-solid fa-chevron-left text-muted small"></i>
+                </button>
+            </div>
+
+            <hr class="my-3">
+
+            <!-- menu -->
+            <nav class="nav flex-column mb-auto" id="menuItems">
+                <a href="index.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 bg-monYellowSoft fw-medium mb-1">
+                    <img src="src/img/house-line-svgrepo-com.svg" alt="" width="24"> Dashboard
+                </a>
+                <a href="transacoes.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/card-transfer-svgrepo-com.svg" alt="" width="24"> Transações
+                </a>
+                <a href="clientes.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/users-svgrepo-com.svg" alt="" width="24"> Clientes
+                </a>
+                <a href="links-de-pagamento.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/link-2-svgrepo-com.svg" alt="" width="24"> Links de pagamento
+                </a>
+                <a href="financeiro.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/graph-svgrepo-com (1).svg" alt="" width="24"> Financeiro
+                </a>
+            </nav>
+
+            <div class="pt-4">
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted mb-1">
+                    <i class="fa-solid fa-gear"></i> Configurações
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted mb-1">
+                    <i class="fa-solid fa-headset"></i> Central de ajuda
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-grow-1 p-4">
+            <!-- TOPBAR -->
+            <header class="d-flex align-items-center justify-content-between">
+                <h1 class="h1 mb-0">Taxa e Pagamento</h1>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="small">
+                        <span class="text-muted">Saldo disponível: </span>
+                        <strong>R$ 8.497,83</strong>
+                    </div>
+                    <!-- USER -->
+                    <div class="dropdown">
+                        <button id="userBtn" class="btn bg-monBg rounded-3 shadow-soft d-flex align-items-center gap-2"
+                            data-bs-toggle="dropdown">
+                            <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center fw-semibold"
+                                style="width:32px; height:32px;">V</div>
+                            <div class="text-start lh-sm">
+                                <div class="small fw-semibold">Vinícius Nascimento</div>
+                                <div class="text-muted small">Grupo Gen 3</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-muted small"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="dropdownUser">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-person-circle me-2"></i> Minha conta
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-shield-check me-2"></i> Sessões
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-shield-lock me-2"></i> Segurança (2FA)
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center text-danger" href="#">
+                                    <i class="bi bi-box-arrow-right me-2"></i> Sair
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <hr>
+
+            <section class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="fw-bold mb-3">15 registros</h5>
+
+                            <!-- Filtros -->
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Transação</option>
+                                    <option>Pago</option>
+                                    <option>Pendente</option>
+                                    <option>Recusado</option>
+                                </select>
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Cliente</option>
+                                    <option>A-Z</option>
+                                    <option>Z-A</option>
+                                </select>
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Forma de pagamento</option>
+                                    <option>Boleto</option>
+                                    <option>Cartão</option>
+                                    <option>Pix</option>
+                                </select>
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Status</option>
+                                    <option>Aprovado</option>
+                                    <option>Recusado</option>
+                                </select>
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Parcelas</option>
+                                    <option>À vista</option>
+                                    <option>2x</option>
+                                    <option>3x</option>
+                                </select>
+                                <select class="form-select form-select-sm w-auto">
+                                    <option selected>Entrega</option>
+                                    <option>Pendente</option>
+                                    <option>Enviado</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Tabela -->
+                        <div class="table-responsive">
+                            <table class="table align-middle table-borderless">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Forma de pagamento</th>
+                                        <th>Status</th>
+                                        <th>Produto</th>
+                                        <th>Data da transação</th>
+                                        <th>Data de pagamento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="rounded-circle bg-warning text-white fw-bold d-flex justify-content-center align-items-center me-2"
+                                                    style="width:35px;height:35px;">AP</div>
+                                                <div>
+                                                    <strong>Ana Paula Ferreira</strong><br>
+                                                    <small class="text-muted">ana.ferreira@gmail.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img src="https://img.icons8.com/color/24/000000/mastercard-logo.png"
+                                                class="me-1" alt="Mastercard">
+                                            <strong>R$ 395,90</strong><br>
+                                            <small>À vista</small>
+                                        </td>
+                                        <td><span class="badge bg-danger-subtle text-danger">Recusado</span></td>
+                                        <td>Cafeteira Express<br><small class="text-muted">R$ 395,90</small></td>
+                                        <td>10 de Ago. 12:31</td>
+                                        <td>10 de Ago. 12:31</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="rounded-circle bg-warning text-white fw-bold d-flex justify-content-center align-items-center me-2"
+                                                    style="width:35px;height:35px;">LM</div>
+                                                <div>
+                                                    <strong>Lucas Martins da Silva</strong><br>
+                                                    <small class="text-muted">lucas.martins@yahoo.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img src="https://img.icons8.com/color/24/000000/mastercard-logo.png"
+                                                class="me-1" alt="Mastercard">
+                                            <strong>R$ 241,50</strong><br>
+                                            <small>À vista</small>
+                                        </td>
+                                        <td><span class="badge bg-success-subtle text-success">Aprovado</span></td>
+                                        <td>Liquidificador Profissional<br><small class="text-muted">R$ 241,50</small>
+                                        </td>
+                                        <td>10 de Ago. 11:45</td>
+                                        <td>10 de Ago. 11:45</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="rounded-circle bg-warning text-white fw-bold d-flex justify-content-center align-items-center me-2"
+                                                    style="width:35px;height:35px;">MS</div>
+                                                <div>
+                                                    <strong>Mariana Souza Lima</strong><br>
+                                                    <small class="text-muted">mariana.lima@hotmail.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img src="https://img.icons8.com/color/24/000000/visa.png" class="me-1"
+                                                alt="Visa">
+                                            <strong>R$ 479,70</strong><br>
+                                            <small>À vista</small>
+                                        </td>
+                                        <td><span class="badge bg-success-subtle text-success">Aprovado</span></td>
+                                        <td>Conjunto de Panelas<br><small class="text-muted">R$ 479,70</small></td>
+                                        <td>10 de Ago. 11:28</td>
+                                        <td>10 de Ago. 11:28</td>
+                                    </tr>
+
+                                    <!-- Repita as demais linhas conforme necessário -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Rodapé da tabela -->
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <small class="text-muted">Mostrando 10 de 15 resultados</small>
+                            <div>
+                                <button class="btn btn-outline-secondary btn-sm me-1">&lt;</button>
+                                <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script>
+        // ===== Sidebar collapse =====
+        const sidebar = document.getElementById('sidebar');
+        const btnCollapse = document.getElementById('btnCollapse');
+
+        btnCollapse.addEventListener('click', () => {
+            const collapsed = sidebar.classList.toggle('!w-20');
+            // girar ícone
+            btnCollapse.querySelector('i').classList.toggle('rotate-180');
+            // esconder textos
+            document.querySelectorAll('#menuItems .menu-text, #menuBottom .menu-text').forEach(el => {
+                if (collapsed) {
+                    el.classList.add('hidden');
+                } else {
+                    el.classList.remove('hidden');
+                }
+            });
+        });
+
+
+        // Filtro período (placeholder)
+        document.getElementById('btnPeriodo').addEventListener('click', () => {
+            alert('Aqui você pode integrar um datepicker (ex.: flatpickr ou Litepicker).');
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

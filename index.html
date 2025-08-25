@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moneria Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="https://content.moneria.com.br/tenants/moneria.com.br/favicon.ico">
+    <!-- Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- CSS custom -->
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+
+<body class="bg-white text-dark">
+    <div class="d-flex min-vh-100">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="bg-monBg p-4 d-flex flex-column">
+            <!-- top logo + collapse -->
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                    <img src="src/img/logo-moneria.svg" alt="Moneria Logo" class="logo-img">
+                </div>
+                <button id="btnCollapse"
+                    class="btn btn-light btn-sm rounded-circle shadow-soft d-flex align-items-center justify-content-center"
+                    title="Recolher menu">
+                    <i class="fa-solid fa-chevron-left text-muted small"></i>
+                </button>
+            </div>
+
+            <hr class="my-3">
+
+            <!-- menu -->
+            <nav class="nav flex-column mb-auto" id="menuItems">
+                <a href="index.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 bg-monYellowSoft fw-medium mb-1">
+                    <img src="src/img/house-line-svgrepo-com.svg" alt="" width="24"> Dashboard
+                </a>
+                <a href="transacoes.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/card-transfer-svgrepo-com.svg" alt="" width="24"> Transações
+                </a>
+                <a href="clientes.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/users-svgrepo-com.svg" alt="" width="24"> Clientes
+                </a>
+                <a href="links-de-pagamento.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/link-2-svgrepo-com.svg" alt="" width="24"> Links de pagamento
+                </a>
+                <a href="financeiro.html"
+                    class="link-sidebar-menu nav-link d-flex align-items-center gap-2 rounded-3 mb-1">
+                    <img src="src/img/graph-svgrepo-com (1).svg" alt="" width="24"> Financeiro
+                </a>
+            </nav>
+
+            <div class="pt-4">
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted mb-1">
+                    <i class="fa-solid fa-gear"></i> Configurações
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted mb-1">
+                    <i class="fa-solid fa-headset"></i> Central de ajuda
+                </a>
+                <a href="#" class="nav-link d-flex align-items-center gap-2 rounded-3 text-muted">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-grow-1 p-4">
+            <!-- TOPBAR -->
+            <header class="d-flex align-items-center justify-content-between">
+                <h1 class="h1 mb-0">Dashboard</h1>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="small">
+                        <span class="text-muted">Saldo disponível: </span>
+                        <strong>R$ 8.497,83</strong>
+                    </div>
+                    <!-- USER -->
+                    <div class="dropdown">
+                        <button id="userBtn" class="btn bg-monBg rounded-3 shadow-soft d-flex align-items-center gap-2"
+                            data-bs-toggle="dropdown">
+                            <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center fw-semibold"
+                                style="width:32px; height:32px;">V</div>
+                            <div class="text-start lh-sm">
+                                <div class="small fw-semibold">Vinícius Nascimento</div>
+                                <div class="text-muted small">Grupo Gen 3</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down text-muted small"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="dropdownUser">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-person-circle me-2"></i> Minha conta
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-shield-check me-2"></i> Sessões
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-shield-lock me-2"></i> Segurança (2FA)
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center text-danger" href="#">
+                                    <i class="bi bi-box-arrow-right me-2"></i> Sair
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <hr>
+
+            <!-- REPORTS HEADER -->
+            <section class="mt-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2 class="h6 fw-bold title">Relatórios</h2>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-secondary btn-sm">Hoje</button>
+                        <button class="btn btn-outline-secondary btn-sm">Ontem</button>
+                        <button class="btn btn-outline-secondary btn-sm">7 Dias</button>
+                        <button class="btn btn-outline-secondary btn-sm">14 Dias</button>
+                        <button class="btn btn-outline-secondary btn-sm">30 Dias</button>
+                        <button class="btn btn-warning btn-sm fw-semibold">
+                            1 ago. 2025 - 31 ago. 2025 <i class="fa-solid fa-chevron-down small ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- CARDS DASHBOARD -->
+
+            <section class="container-fluid mt-4">
+                <div class="row g-4">
+                    <div class="col-12 col-lg-8">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-4">
+                                <div class="rounded-3 p-4 bg-dark text-white shadow-soft h-100">
+                                    <div class="small fw">Total em vendas</div>
+                                    <div class="card-content">
+                                        <div class="fs-4 fw-semibold">R$ 19.140,13</div>
+                                        <div class="text-success small mt-2"> <span class="positivo">
+                                                <i class="fa-solid fa-caret-up"></i> +12,8%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="rounded-3 p-4 shadow-soft h-100 cards-light">
+                                    <div class="small text-muted">Pedidos pagos</div>
+                                    <div class="card-content">
+                                        <div class="fs-4 fw-semibold">126</div>
+                                        <div class="text-success small mt-2"> <span class="positivo">
+                                                <i class="fa-solid fa-caret-up"></i> +29,3%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="rounded-3 p-4 shadow-soft h-100 cards-light">
+                                    <div class="small text-muted">Ticket médio</div>
+                                    <div class="card-content">
+                                        <div class="fs-4 fw-semibold">R$ 427,92</div>
+                                        <div class="text-danger small mt-2"> <span class="negativo">
+                                                <i class="fa-solid fa-caret-down"></i> -2,9%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- vendas por dia -->
+                            <div class="col-12">
+                                <div class="rounded-3 p-4 bg-white shadow-soft">
+                                    <div class="fw-bold mb-3 small title">Vendas por dia</div>
+                                    <p class="fw-semibold mb-3 small sub-title">Acompanhe o volume diário da sua
+                                        empresa.</p>
+                                    <canvas id="chartVendas" height="110"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- col-4 -->
+                    <div class="col-12 col-lg-4">
+                        <div class="rounded-3 p-4 bg-white shadow-soft h-100 d-flex flex-column">
+                            <div class="fw-bold mb-2 title">Vendas por método</div>
+                            <ul class="list-unstyled small mb-4">
+                                <li class="d-flex justify-content-between align-items-center py-2">
+                                    <img src="src/img/barcode-svgrepo-com (3).svg" width="24"> <span
+                                        class="ms-2 flex-grow-1">Boletos</span>
+                                    <strong>17%</strong>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                                    <img src="src/img/pix-icon.svg" width="24"> <span
+                                        class="ms-2 flex-grow-1">Pix</span>
+                                    <strong>49%</strong>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                                    <img src="src/img/credit-card-svgrepo-com (1).svg" width="24"> <span
+                                        class="ms-2 flex-grow-1">Cartão</span>
+                                    <strong>34%</strong>
+                                </li>
+                            </ul>
+                            <div class="card-content">
+                                <canvas id="chartMetodos" height="140"></canvas>
+                                <div class="ms-5 mt-3 small">
+                                    <p class="mb-1">Boletos: <br> <strong>R$ 366,73</strong></p>
+                                    <p class="mb-1">Pix:<br> <strong>R$ 4.997,80</strong></p>
+                                    <p class="mb-0">Cartão:<br> <strong>R$ 3.797,95</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- bottom grid -->
+            <section class="container-fluid mt-4">
+                <div class="row g-4">
+                    <div class="col-12 col-lg-3">
+                        <div class="rounded-3 p-4 bg-white shadow-soft h-100 text-center">
+                            <div class="fw-bold mb-3 title text-start">Parcelas no cartão</div>
+                            <p class="fw-semibold mb-3 small sub-title">Número de transações</p>
+                            <canvas id="chartParcelas" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="rounded-3 p-4 bg-white shadow-soft h-100">
+                            <div class="fw-bold mb-4 title">Taxa de rastreio</div>
+                            <ul class="list-unstyled small mb-4">
+                                <li class="d-flex justify-content-between align-items-center py-2 mb-4">
+                                    <img src="src/img/clock-eight-svgrepo-com.svg" width="24"> <span
+                                        class="ms-2 flex-grow-1">Aguardando: </span>
+                                    <strong>31 (15%)</strong>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center py-2 mb-4 border-top">
+                                    <img class="mt-4" src="src/img/car-delivery-package-svgrepo-com.svg" width="24">
+                                    <span class="ms-2 flex-grow-1 mt-4">A
+                                        caminho: </span>
+                                    <strong>76 (34%)</strong>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center py-2 mb-4 border-top">
+                                    <img class="mt-4" src="src/img/box-tick-svgrepo-com.svg" alt="Icon" width="24">
+                                    <span class="ms-2 flex-grow-1 mt-4">Entregue: </span>
+                                    <strong>92 (51%)</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="rounded-3 p-4 bg-white shadow-soft h-100 d-flex">
+
+                            <!-- Gráfico -->
+                            <div class="flex-grow-1">
+                                <div class="fw-bold mb-3 title">Índices</div>
+                                <canvas id="chartIndices" height="160"></canvas>
+                            </div>
+
+                            <!-- Legenda lateral -->
+                            <div class="ms-4 d-flex flex-column justify-content-center">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="rounded-circle me-2"
+                                        style="width:14px; height:14px; background:#f7e08d;"></span>
+                                    <span>Boletos</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="rounded-circle me-2"
+                                        style="width:14px; height:14px; background:#ffe033;"></span>
+                                    <span>Pix</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="rounded-circle me-2"
+                                        style="width:14px; height:14px; background:#e5e29f;"></span>
+                                    <span>Chargebacks</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="rounded-circle me-2"
+                                        style="width:14px; height:14px; background:#f8f2d0;"></span>
+                                    <span>Pré-Chargebacks</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // ===== Sidebar collapse =====
+        const sidebar = document.getElementById('sidebar');
+        const btnCollapse = document.getElementById('btnCollapse');
+
+        btnCollapse.addEventListener('click', () => {
+            const collapsed = sidebar.classList.toggle('!w-20');
+            // girar ícone
+            btnCollapse.querySelector('i').classList.toggle('rotate-180');
+            // esconder textos
+            document.querySelectorAll('#menuItems .menu-text, #menuBottom .menu-text').forEach(el => {
+                if (collapsed) {
+                    el.classList.add('hidden');
+                } else {
+                    el.classList.remove('hidden');
+                }
+            });
+        });
+        // Vendas por dia
+        new Chart(document.getElementById('chartVendas'), {
+            type: 'line',
+            data: {
+                labels: ['1 ago', '5 ago', '10 ago', '15 ago', '20 ago', '25 ago', '31 ago'],
+                datasets: [{
+                    label: 'Vendas',
+                    data: [450, 600, 300, 297, 650, 720, 400],
+                    borderColor: '#ffd600',
+                    backgroundColor: 'rgba(255,214,0,0.3)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Vendas por método
+        const ctx = document.getElementById('chartMetodos').getContext('2d');
+
+        const data = {
+            labels: ['Boleto', 'Pix', 'Cartão'],
+            datasets: [{
+                data: [17, 49, 34],
+                backgroundColor: ['#766d3f', '#f3d32f', '#262625']
+            }]
+        };
+
+        const chartMetodos = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                cutout: '70%', // furo do donut
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }, // desativa tooltip padrão
+                }
+            },
+            plugins: [{
+                id: 'centerTooltip',
+                afterDraw(chart) {
+                    const { ctx, tooltip, chartArea: { width, height } } = chart;
+                    const active = chart.getActiveElements();
+
+                    ctx.save();
+                    ctx.font = 'bold 14px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+
+                    if (active.length > 0) {
+                        const datasetIndex = active[0].datasetIndex;
+                        const dataIndex = active[0].index;
+                        const value = chart.data.datasets[datasetIndex].data[dataIndex];
+                        const label = chart.data.labels[dataIndex];
+
+                        // fundo branco arredondado
+                        const centerX = chart.chartArea.left + width / 2;
+                        const centerY = chart.chartArea.top + height / 2;
+                        const text = `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\n${label}`;
+
+                        // caixa
+                        const boxWidth = 120;
+                        const boxHeight = 50;
+                        const radius = 8;
+                        ctx.fillStyle = '#fff';
+                        ctx.strokeStyle = '#ccc';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX - boxWidth / 2 + radius, centerY - boxHeight / 2);
+                        ctx.lineTo(centerX + boxWidth / 2 - radius, centerY - boxHeight / 2);
+                        ctx.quadraticCurveTo(centerX + boxWidth / 2, centerY - boxHeight / 2, centerX + boxWidth / 2, centerY - boxHeight / 2 + radius);
+                        ctx.lineTo(centerX + boxWidth / 2, centerY + boxHeight / 2 - radius);
+                        ctx.quadraticCurveTo(centerX + boxWidth / 2, centerY + boxHeight / 2, centerX + boxWidth / 2 - radius, centerY + boxHeight / 2);
+                        ctx.lineTo(centerX - boxWidth / 2 + radius, centerY + boxHeight / 2);
+                        ctx.quadraticCurveTo(centerX - boxWidth / 2, centerY + boxHeight / 2, centerX - boxWidth / 2, centerY + boxHeight / 2 - radius);
+                        ctx.lineTo(centerX - boxWidth / 2, centerY - boxHeight / 2 + radius);
+                        ctx.quadraticCurveTo(centerX - boxWidth / 2, centerY - boxHeight / 2, centerX - boxWidth / 2 + radius, centerY - boxHeight / 2);
+                        ctx.closePath();
+                        ctx.fill();
+                        ctx.stroke();
+
+                        // texto
+                        ctx.fillStyle = '#000';
+                        ctx.fillText(`R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, centerX, centerY - 5);
+                        ctx.font = '12px Arial';
+                        ctx.fillText(label, centerX, centerY + 12);
+                    }
+                    ctx.restore();
+                }
+            }]
+        });
+
+        // Parcelas no cartão
+        const ctxParcelas = document.getElementById('chartParcelas').getContext('2d');
+
+        const parcelasData = {
+            labels: ['1x no Cartão', '2x no Cartão', '3x no Cartão', '4x no Cartão', '5x no Cartão', '6x no Cartão'],
+            datasets: [{
+                data: [5, 8, 10, 12, 7, 6], // valores de exemplo = nº de transações
+                backgroundColor: ['#a7984a', '#565550', '#ddd5a9', '#766d3f', '#f3d32f', '#262625']
+            }]
+        };
+
+        new Chart(ctxParcelas, {
+            type: 'doughnut',
+            data: parcelasData,
+            options: {
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false }
+                }
+            },
+            plugins: [{
+                id: 'centerLabel',
+                afterDraw(chart) {
+                    const active = chart.getActiveElements();
+                    const { ctx, chartArea: { width, height } } = chart;
+                    const centerX = chart.chartArea.left + width / 2;
+                    const centerY = chart.chartArea.top + height / 2;
+
+                    ctx.save();
+
+                    if (active.length > 0) {
+                        const datasetIndex = active[0].datasetIndex;
+                        const dataIndex = active[0].index;
+                        const value = chart.data.datasets[datasetIndex].data[dataIndex];
+                        const label = chart.data.labels[dataIndex];
+
+                        // fundo caixa branca arredondada
+                        const boxWidth = 140;
+                        const boxHeight = 50;
+                        const radius = 10;
+
+                        ctx.fillStyle = '#fff';
+                        ctx.strokeStyle = '#ddd';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX - boxWidth / 2 + radius, centerY - boxHeight / 2);
+                        ctx.lineTo(centerX + boxWidth / 2 - radius, centerY - boxHeight / 2);
+                        ctx.quadraticCurveTo(centerX + boxWidth / 2, centerY - boxHeight / 2, centerX + boxWidth / 2, centerY - boxHeight / 2 + radius);
+                        ctx.lineTo(centerX + boxWidth / 2, centerY + boxHeight / 2 - radius);
+                        ctx.quadraticCurveTo(centerX + boxWidth / 2, centerY + boxHeight / 2, centerX + boxWidth / 2 - radius, centerY + boxHeight / 2);
+                        ctx.lineTo(centerX - boxWidth / 2 + radius, centerY + boxHeight / 2);
+                        ctx.quadraticCurveTo(centerX - boxWidth / 2, centerY + boxHeight / 2, centerX - boxWidth / 2, centerY + boxHeight / 2 - radius);
+                        ctx.lineTo(centerX - boxWidth / 2, centerY - boxHeight / 2 + radius);
+                        ctx.quadraticCurveTo(centerX - boxWidth / 2, centerY - boxHeight / 2, centerX - boxWidth / 2 + radius, centerY - boxHeight / 2);
+                        ctx.closePath();
+                        ctx.fill();
+                        ctx.stroke();
+
+                        // textos
+                        ctx.fillStyle = '#000';
+                        ctx.font = 'bold 14px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText(label, centerX, centerY - 5);
+                        ctx.font = '12px Arial';
+                        ctx.fillText(`${value} Transações`, centerX, centerY + 12);
+                    }
+
+                    ctx.restore();
+                }
+            }]
+        });
+
+
+        //indices
+        new Chart(document.getElementById('chartIndices'), {
+            type: 'bar',
+            data: {
+                labels: ['Boletos', 'Chargebacks', 'Pix', 'Pré-Chargebacks'],
+                datasets: [{
+                    data: [75, 12, 95, 20], // valores de exemplo
+                    backgroundColor: [
+                        '#f7e08d', // Boletos
+                        '#e5e29f', // Chargebacks
+                        '#ffe033', // Pix
+                        '#f8f2d0'  // Pré-Chargebacks
+                    ],
+                    borderRadius: 6, // borda arredondada nas barras
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false }, // remove legenda nativa
+                    tooltip: {
+                        backgroundColor: '#fff',
+                        titleColor: '#000',
+                        bodyColor: '#000',
+                        borderColor: '#ddd',
+                        borderWidth: 1,
+                        displayColors: false,
+                        callbacks: {
+                            label: function (context) {
+                                return context.parsed.y + ' ' + context.label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            borderDash: [4, 4],
+                            color: '#ddd'
+                        }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // Filtro período (placeholder)
+        document.getElementById('btnPeriodo').addEventListener('click', () => {
+            alert('Aqui você pode integrar um datepicker (ex.: flatpickr ou Litepicker).');
+        });
+
+    </script>
+
+    <script src="/src/js/api.js"></script>
+    <script>
+        async function atualizarSaldo() {
+            const saldo = await obterSaldo(); 
+            document.getElementById("saldo").textContent =
+                "R$ " + saldo.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+        }
+
+        atualizarSaldo();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
