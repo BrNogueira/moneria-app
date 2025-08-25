@@ -118,12 +118,23 @@ body {
 
 /* Sidebar */
 #sidebar {
-    width: 270px;
-    background: #f8fcfa;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    transition: width 0.3s ease;
+width: initial;
+    min-width: 278px;
+    min-height: 250px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    max-width: 278px;
+    height: initial;
+    margin-right: auto;
+    position: fixed;
+    z-index: 1504;
+    justify-content: space-between;
+    row-gap: 16px;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    padding: 30px 30px 30px 30px;
 }
 
 #sidebar .logo img {
@@ -669,4 +680,5 @@ button.btn.btn-warning.btn-sm.fw-semibold {
     .card-content h2 {
         font-size: 1.2rem;
     }
+
 }
