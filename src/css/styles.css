@@ -53,7 +53,7 @@ span {
 
 .link-sidebar-menu {
     font-size: 18px;
-    line-height: 65px;
+    row-gap: 18px;
     font-weight: 400;
     font-family: 'd-dinexp', sans-serif !important;
     color: #000 !important;
@@ -685,4 +685,5 @@ button.btn.btn-warning.btn-sm.fw-semibold {
     }
 
 }
+
 
